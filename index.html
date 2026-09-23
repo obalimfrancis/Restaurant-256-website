@@ -2,205 +2,1112 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style.css" />
-    <link
-      rel="shortcut icon"
-      href="./images/logo (3).svg"
-      type="image/x-icon"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/daisyui@5"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0d0b09" />
+    <meta name="color-scheme" content="dark" />
 
-    <title>Mr.Testy</title>
+    <title>Mr. Tasty — Comfort Dining & Wood-Fired Grill</title>
+    <meta
+      name="description"
+      content="Mr. Tasty is a neighbourhood grill serving honest, flavour-packed comfort food since 2015. Browse the menu, order ahead, or book a table with Chef Leo Mubiru's kitchen."
+    />
+    <meta name="author" content="Mr. Tasty" />
+    <link rel="canonical" href="https://mrtasty.example.com/" />
+
+    <!-- Open Graph / social sharing -->
+    <meta property="og:type" content="restaurant" />
+    <meta property="og:site_name" content="Mr. Tasty" />
+    <meta property="og:title" content="Mr. Tasty — Comfort Dining & Wood-Fired Grill" />
+    <meta
+      property="og:description"
+      content="Honest, flavour-packed comfort food since 2015. Browse the menu, order ahead, or book a table."
+    />
+    <meta property="og:image" content="./images/Restaurant.jpeg" />
+    <meta property="og:image:alt" content="The warmly lit dining room at Mr. Tasty" />
+    <meta property="og:url" content="https://mrtasty.example.com/" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="./images/logo-3.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./images/logo-3.svg" />
+
+    <!-- Fonts: Playfair Display for display type, Inter for UI -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Scroll-reveal styles are gated behind .js so a failed main.js cannot
+         leave the page blank. The flag is set before first paint to avoid a
+         flash, then revoked if main.js never reports in (404, blocked, or a
+         parse error). -->
+    <script>
+      document.documentElement.classList.add("js");
+      window.setTimeout(function () {
+        if (!window.__mrTastyReady) document.documentElement.classList.remove("js");
+      }, 2500);
+    </script>
+
+    <link rel="stylesheet" href="./tailwind.build.css" />
+    <link rel="preload" as="image" href="./images/Restaurant.jpeg" fetchpriority="high" />
+
+    <!-- Structured data so search engines can surface hours, location and menu -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": "Mr. Tasty",
+        "description": "Neighbourhood grill serving honest, flavour-packed comfort food since 2015.",
+        "image": "./images/Restaurant.jpeg",
+        "servesCuisine": ["Grill", "Comfort food", "Contemporary"],
+        "priceRange": "$$",
+        "foundingDate": "2015",
+        "telephone": "+1-555-012-3344",
+        "email": "hello@mrtasty.example.com",
+        "hasMenu": "#menu",
+        "acceptsReservations": "True",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "24 Kingfisher Lane",
+          "addressLocality": "Riverside District",
+          "postalCode": "00100",
+          "addressCountry": "US"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
+            "opens": "11:00",
+            "closes": "22:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Friday", "Saturday"],
+            "opens": "11:00",
+            "closes": "23:30"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Sunday",
+            "opens": "12:00",
+            "closes": "21:00"
+          }
+        ]
+      }
+    </script>
   </head>
+
   <body>
-    <header id="header">
-      <!-- Include this script tag or install `@tailwindplus/elements` via npm: -->
-      <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script> -->
-      <nav id="navigate">
-        <div>
-          <h2>Mr.Tasty</h2>
-        </div>
-        <div>
-          <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
-          <ul id="navlist">
-            <li><a href="#menu">Menu</a></li>
-            <li><a href="./About.html" target="_blank">About Us</a></li>
-            <li><a href="#reservations">Reservations</a></li>
-            <li><a href="#contact">Contact Us</a></li>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- ===================== Header ===================== -->
+    <header class="site-header" id="site-header">
+      <div class="container-x">
+        <nav class="nav" aria-label="Primary">
+          <a class="brand" href="#top" aria-label="Mr. Tasty — home">
+            <svg class="brand__mark" viewBox="0 0 48 48" aria-hidden="true">
+              <circle cx="24" cy="24" r="22.5" fill="none" stroke="#d9a441" stroke-width="1.25" />
+              <circle cx="24" cy="24" r="18" fill="none" stroke="#d9a441" stroke-width="0.6" opacity="0.5" />
+              <path
+                d="M17 13v9.5a3.5 3.5 0 0 0 7 0V13M20.5 13v9M31 13c-2.2 1.6-3.2 4-3.2 7 0 2.2.8 3.6 2.2 4.2V35M17 24.5V35"
+                fill="none"
+                stroke="#d9a441"
+                stroke-width="1.6"
+                stroke-linecap="round"
+              />
+            </svg>
+            <span class="brand__name">Mr.<span>Tasty</span></span>
+          </a>
+
+          <ul class="nav__links" id="nav-links">
+            <li><a class="nav__link" href="#menu">Menu</a></li>
+            <li><a class="nav__link" href="#signatures">Signatures</a></li>
+            <li><a class="nav__link" href="#story">Our Story</a></li>
+            <li><a class="nav__link" href="#gallery">Gallery</a></li>
+            <li><a class="nav__link" href="#visit">Visit</a></li>
           </ul>
-        </div>
-      </nav>
+
+          <div class="nav__actions">
+            <button
+              class="icon-btn cart-btn"
+              id="cart-open"
+              type="button"
+              aria-label="Open your order"
+              aria-haspopup="dialog"
+            >
+              <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                <path d="M4 7h16l-1.3 11.1a2 2 0 0 1-2 1.9H7.3a2 2 0 0 1-2-1.9L4 7Z" stroke-linejoin="round" />
+                <path d="M9 10V6.5a3 3 0 0 1 6 0V10" stroke-linecap="round" />
+              </svg>
+              <span class="cart-btn__count" id="cart-count" aria-hidden="true">0</span>
+            </button>
+
+            <a class="btn btn--primary btn--sm btn--reserve-desktop" href="#reserve">Book a table</a>
+
+            <button
+              class="nav__toggle"
+              id="nav-toggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="mobile-menu"
+              aria-label="Open navigation menu"
+            >
+              <span></span>
+            </button>
+          </div>
+        </nav>
+      </div>
     </header>
 
-    <main>
-      <div
-        class="hero min-h-screen"
-        style="background-image: url(./images/Restaurant.jpeg)"
-      >
-        <div class="hero-overlay"></div>
-        <div class="hero-content text-neutral-content text-center">
-          <div class="max-w-md">
-            <h1 class="mb-5 font-bold">Hello there</h1>
-            <p class="mb-5">
-              Welcome to Mr.Testy where bite is a masterpiece. We are delighted
-              to have you here and invite you to explore our menu, where every
-              dish is crafted with passion and precision.
-            </p>
-            <p id="explore">
-              <a href="#menu">Explore the Menu</a>
-            </p>
+    <!-- ===================== Mobile menu ===================== -->
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <nav aria-label="Mobile">
+        <ul class="mobile-menu__list">
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#signatures">Signatures</a></li>
+          <li><a href="#story">Our Story</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#reserve">Reservations</a></li>
+          <li><a href="#visit">Visit</a></li>
+        </ul>
+        <div class="mobile-menu__foot">
+          <a href="tel:+15550123344">+1 (555) 012-3344</a>
+          <a class="btn btn--primary btn--sm" href="#reserve">Book a table</a>
+        </div>
+      </nav>
+    </div>
+
+    <main id="main">
+      <!-- ===================== Hero ===================== -->
+      <section class="hero" id="top">
+        <div class="hero__media">
+          <img
+            src="./images/Restaurant.jpeg"
+            alt=""
+            width="1920"
+            height="1080"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </div>
+        <div class="hero__veil"></div>
+
+        <div class="container-x hero__inner">
+          <p class="eyebrow">Est. 2015 &middot; Riverside District</p>
+          <h1 class="hero__title">
+            Every bite,
+            <em>a masterpiece.</em>
+          </h1>
+          <p class="hero__text">
+            Wood-fired grills, seasonal produce and recipes that taste like
+            somebody&rsquo;s kitchen rather than somebody&rsquo;s laboratory.
+            Pull up a chair &mdash; the good stuff is already on the fire.
+          </p>
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="#reserve">Reserve a table</a>
+            <a class="btn btn--ghost" href="#menu">Explore the menu</a>
           </div>
+          <p class="hero__rating">
+            <span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span>Rated <strong>4.9</strong> by 820 neighbourhood regulars</span>
+          </p>
+        </div>
+
+        <div class="hero__cue" aria-hidden="true">
+          <i></i>
+          <span>Scroll</span>
+        </div>
+      </section>
+
+      <!-- ===================== Value strip ===================== -->
+      <section class="section" style="padding-block: clamp(2.5rem, 5vw, 4rem)">
+        <div class="container-x">
+          <div class="values reveal">
+            <div class="value">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M12 3c2.5 3 4 5.2 4 7.6a4 4 0 0 1-8 0C8 8.2 9.5 6 12 3Z" stroke-linejoin="round" />
+                <path d="M5.5 14c0 4 2.9 7 6.5 7s6.5-3 6.5-7" stroke-linecap="round" />
+              </svg>
+              <div>
+                <h3>Wood-fired daily</h3>
+                <p>Everything that can meet the flame, does. Oak and applewood, lit at 7am.</p>
+              </div>
+            </div>
+            <div class="value">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M3 12c4-6 14-6 18 0-4 6-14 6-18 0Z" stroke-linejoin="round" />
+                <circle cx="12" cy="12" r="2.5" />
+              </svg>
+              <div>
+                <h3>Market-led menu</h3>
+                <p>We write the specials after the delivery arrives, not before.</p>
+              </div>
+            </div>
+            <div class="value">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="16" rx="2.5" />
+                <path d="M8 3v4M16 3v4M3 10h18" stroke-linecap="round" />
+              </svg>
+              <div>
+                <h3>Table in 60 seconds</h3>
+                <p>Book online any day of the week &mdash; instant confirmation.</p>
+              </div>
+            </div>
+            <div class="value">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M4 6h13l3 5-9.5 9L2 11l2-5Z" stroke-linejoin="round" />
+                <path d="M9.5 6 12 20M14.5 6 12 20M2 11h18" stroke-linecap="round" />
+              </svg>
+              <div>
+                <h3>Order ahead</h3>
+                <p>Build your order here and collect it hot from the pass.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== Menu ===================== -->
+      <section class="section section--tint" id="menu" aria-labelledby="menu-title">
+        <div class="container-x">
+          <header class="section-head reveal">
+            <p class="eyebrow">The Menu</p>
+            <h2 class="section-title" id="menu-title">
+              Served from the <em>open kitchen</em>
+            </h2>
+            <p class="lede">
+              Five courses of honest cooking. Filter by what you fancy, then add
+              anything to your order and collect it from the pass.
+            </p>
+          </header>
+
+          <div class="filters reveal" role="tablist" aria-label="Filter menu by course">
+            <button class="filter" role="tab" type="button" id="tab-all" aria-selected="true" aria-controls="menu-grid" tabindex="0" data-filter="all">All</button>
+            <button class="filter" role="tab" type="button" id="tab-starters" aria-selected="false" aria-controls="menu-grid" tabindex="-1" data-filter="starters">Starters</button>
+            <button class="filter" role="tab" type="button" id="tab-mains" aria-selected="false" aria-controls="menu-grid" tabindex="-1" data-filter="mains">Mains</button>
+            <button class="filter" role="tab" type="button" id="tab-desserts" aria-selected="false" aria-controls="menu-grid" tabindex="-1" data-filter="desserts">Desserts</button>
+            <button class="filter" role="tab" type="button" id="tab-drinks" aria-selected="false" aria-controls="menu-grid" tabindex="-1" data-filter="drinks">Drinks</button>
+          </div>
+
+          <div class="menu-grid reveal" id="menu-grid" role="tabpanel" tabindex="0" aria-labelledby="tab-all">
+            <!-- Starters -->
+            <p class="menu-course" data-course="starters">Starters</p>
+            <article class="menu-item" data-category="starters">
+              <div class="menu-item__head">
+                <h3 class="menu-item__name">Heirloom Tomato Bruschetta</h3>
+                <span class="menu-item__leader" aria-hidden="true"></span>
+              </div>
+              <p class="menu-item__price">$8</p>
+              <p class="menu-item__desc">Charred sourdough, whipped ricotta, basil oil and aged balsamic.</p>
+              <div class="menu-item__meta">
+                <span class="tag tag--veg">Veg</span>
+                <button class="btn btn--ghost btn--sm menu-item__add" type="button" data-add data-name="Heirloom Tomato Bruschetta" data-price="8">Add</button>
+              </div>
+            </article>
+
+            <article class="menu-item" data-category="starters">
+              <div class="menu-item__head">
+                <h3 class="menu-item__name">Roasted Pumpkin Soup</h3>
+                <span class="menu-item__leader" aria-hidden="true"></span>
+              </div>
+              <p class="menu-item__price">$9</p>
+              <p class="menu-item__desc">Brown butter, toasted seeds and a slow swirl of cr&egrave;me fra&icirc;che.</p>
+              <div class="menu-item__meta">
+                <span class="tag tag--veg">Veg</span>
+                <span class="tag tag--gf">GF</span>
+                <button class="btn btn--ghost btn--sm menu-item__add" type="button" data-add data-name="Roasted Pumpkin Soup" data-price="9">Add</button>
+              </div>
+            </article>
+
+            <article class="menu-item" data-category="starters">
+              <div class="menu-item__head">
+                <h3 class="menu-item__name">Garlic Butter Shrimp</h3>
+                <span class="menu-item__leader" aria-hidden="true"></span>
+              </div>
+              <p class="menu-item__price">$14</p>
+              <p class="menu-item__desc">Jumbo shrimp seared in a creamy garlic and lemon butter sauce.</p>
+              <div class="menu-item__meta">
+                <span class="tag tag--gf">GF</span>
+                <span class="tag tag--chef">Chef&rsquo;s pick</span>
+                <button class="btn btn--ghost btn--sm menu-item__add" type="button" data-add data-name="Garlic Butter Shrimp" data-price="14">Add</button>
+              </div>
+            </article>
+
+            <article class="menu-item" data-category="starters">
+              <div class="menu-item__head">
+                <h3 class="menu-item__name">Charred Corn Ribs</h3>
+                <span class="menu-item__leader" aria-hidden="true"></span>
+              </div>
+              <p class="menu-item__price">$10</p>
+              <p class="menu-item__desc">Chilli-lime glaze, smoked paprika and a fistful of coriander.</p>
+              <div class="menu-item__meta">
+                <span class="tag tag--veg">Vegan</span>
+                <span class="tag tag--spicy">Spicy</span>
+                <button class="btn btn--ghost btn--sm menu-item__add" type="button" data-add data-name="Charred Corn Ribs" data-price="10">Add</button>
+              </div>
+            </article>
+
+            <!-- Mains -->
+            <p class="menu-course" data-course="mains">Mains</p>
+            <article class="menu-item" data-category="mains">
+              <div class="menu-item__head">
+                <h3 class="menu-item__name">Sliced Ribeye</h3>
+                <span class="menu-item__leader" aria-hidden="true"></span>
+              </div>
+              <p class="menu-item__price">$34</p>
+              <p class="menu-item__desc">Seared to a medium-rare centre over garlic mash, with fire-grilled asparagus.</p>
+              <div class="menu-item__meta">
+                <span class="tag tag--gf">GF</span>
+                <span class="tag tag--chef">Chef&rsquo;s pick</span>
+                <button class="btn btn--ghost btn--sm menu-item__add" type="button" data-add data-name="Sliced Ribeye" data-price="34">Add</button>
+              </div>
+            </article>
+
+            <article class="menu-item" data-category="mains">
+              <div class="menu-item__head">
+                <h3 class="menu-item__name">Filet Mignon &amp; Roasted Potatoes</h3>
+                <span class="menu-item__leader" aria-hidden="true"></span>
+              </div>
+              <p class="menu-item__price">$38</p>
+              <p class="menu-item__desc">Centre-cut filet with a peppercorn crust and sea-salted herb potatoes.</p>
+              <div class="menu-item__meta">
+                <span class="tag tag--gf">GF</span>
+                <button class="btn btn--ghost btn--sm menu-item__add" type="button" data-add data-name="Filet Mignon" data-price="38">Add</button>
+              </div>
+            </article>
+
+            <article class="menu-item" data-category="mains">
+              <div class="menu-item__head">
+                <h3 class="menu-item__name">Grilled Lamb Chops</h3>
+                <span class="menu-item__leader" aria-hidden="true"></span>
+              </div>
+              <p class="menu-item__price">$32</p>
+              <p class="menu-item__desc">Charred chops, crispy potato wedges, garden salad, red wine reduction.</p>
+              <div class="menu-item__meta">
+                <button class="btn btn--ghost btn--sm menu-item__add" type="button" data-add data-name="Grilled Lamb Chops" data-price="32">Add</button>
+              </div>
+            </article>
+
+            <article class="menu-item" data-category="mains">
+              <div class="menu-item__head">
+                <h3 class="menu-item__name">Street-Style Steak Tacos</h3>
+                <span class="menu-item__leader" aria-hidden="true"></span>
+              </div>
+              <p class="menu-item__price">$18</p>
+              <p class="menu-item__desc">Soft corn tortillas, carne asada, cheddar, pico de gallo, chipotle crema.</p>
+              <div class="menu-item__meta">
+                <span class="tag tag--spicy">Spicy</span>
+                <button class="btn btn--ghost btn--sm menu-item__add" type="button" data-add data-name="Street-Style Steak Tacos" data-price="18">Add</button>
+              </div>
+            </article>
+
+            <article class="menu-item" data-category="mains">
+              <div class="menu-item__head">
+                <h3 class="menu-item__name">Herb-Roasted Chicken</h3>
+                <span class="menu-item__leader" aria-hidden="true"></span>
+              </div>
+              <p class="menu-item__price">$22</p>
+              <p class="menu-item__desc">Crisp-skinned leg quarter with an endive, parsley and lemon salad.</p>
+              <div class="menu-item__meta">
+                <span class="tag tag--gf">GF</span>
+                <button class="btn btn--ghost btn--sm menu-item__add" type="button" data-add data-name="Herb-Roasted Chicken" data-price="22">Add</button>
+              </div>
+            </article>
+
+            <article class="menu-item" data-category="mains">
+              <div class="menu-item__head">
+                <h3 class="menu-item__name">Wild Mushroom Risotto</h3>
+                <span class="menu-item__leader" aria-hidden="true"></span>
+              </div>
+              <p class="menu-item__price">$19</p>
+              <p class="menu-item__desc">Carnaroli rice, thyme, aged parmesan and a late hit of truffle oil.</p>
+              <div class="menu-item__meta">
+                <span class="tag tag--veg">Veg</span>
+                <span class="tag tag--gf">GF</span>
+                <button class="btn btn--ghost btn--sm menu-item__add" type="button" data-add data-name="Wild Mushroom Risotto" data-price="19">Add</button>
+              </div>
+            </article>
+
+            <!-- Desserts -->
+            <p class="menu-course" data-course="desserts">Desserts</p>
+            <article class="menu-item" data-category="desserts">
+              <div class="menu-item__head">
+                <h3 class="menu-item__name">Dark Chocolate Tart</h3>
+                <span class="menu-item__leader" aria-hidden="true"></span>
+              </div>
+              <p class="menu-item__price">$11</p>
+              <p class="menu-item__desc">70% ganache, salted hazelnut praline, burnt orange cream.</p>
+              <div class="menu-item__meta">
+                <span class="tag tag--veg">Veg</span>
+                <button class="btn btn--ghost btn--sm menu-item__add" type="button" data-add data-name="Dark Chocolate Tart" data-price="11">Add</button>
+              </div>
+            </article>
+
+            <article class="menu-item" data-category="desserts">
+              <div class="menu-item__head">
+                <h3 class="menu-item__name">Vanilla Bean Panna Cotta</h3>
+                <span class="menu-item__leader" aria-hidden="true"></span>
+              </div>
+              <p class="menu-item__price">$9</p>
+              <p class="menu-item__desc">Set overnight, poured over roasted rhubarb and pistachio crumb.</p>
+              <div class="menu-item__meta">
+                <span class="tag tag--veg">Veg</span>
+                <span class="tag tag--gf">GF</span>
+                <button class="btn btn--ghost btn--sm menu-item__add" type="button" data-add data-name="Vanilla Bean Panna Cotta" data-price="9">Add</button>
+              </div>
+            </article>
+
+            <article class="menu-item" data-category="desserts">
+              <div class="menu-item__head">
+                <h3 class="menu-item__name">Warm Apple Crumble</h3>
+                <span class="menu-item__leader" aria-hidden="true"></span>
+              </div>
+              <p class="menu-item__price">$10</p>
+              <p class="menu-item__desc">Oat and brown sugar topping, cinnamon apples, cold vanilla custard.</p>
+              <div class="menu-item__meta">
+                <span class="tag tag--veg">Veg</span>
+                <button class="btn btn--ghost btn--sm menu-item__add" type="button" data-add data-name="Warm Apple Crumble" data-price="10">Add</button>
+              </div>
+            </article>
+
+            <!-- Drinks -->
+            <p class="menu-course" data-course="drinks">Drinks</p>
+            <article class="menu-item" data-category="drinks">
+              <div class="menu-item__head">
+                <h3 class="menu-item__name">Smoked Old Fashioned</h3>
+                <span class="menu-item__leader" aria-hidden="true"></span>
+              </div>
+              <p class="menu-item__price">$14</p>
+              <p class="menu-item__desc">Applewood smoke, demerara, orange oils and a single clear cube.</p>
+              <div class="menu-item__meta">
+                <span class="tag tag--chef">Bar pick</span>
+                <button class="btn btn--ghost btn--sm menu-item__add" type="button" data-add data-name="Smoked Old Fashioned" data-price="14">Add</button>
+              </div>
+            </article>
+
+            <article class="menu-item" data-category="drinks">
+              <div class="menu-item__head">
+                <h3 class="menu-item__name">House Red, by the Glass</h3>
+                <span class="menu-item__leader" aria-hidden="true"></span>
+              </div>
+              <p class="menu-item__price">$10</p>
+              <p class="menu-item__desc">A soft, peppery grenache blend chosen to sit beside the grill.</p>
+              <div class="menu-item__meta">
+                <span class="tag tag--veg">Vegan</span>
+                <button class="btn btn--ghost btn--sm menu-item__add" type="button" data-add data-name="House Red, by the Glass" data-price="10">Add</button>
+              </div>
+            </article>
+
+            <article class="menu-item" data-category="drinks">
+              <div class="menu-item__head">
+                <h3 class="menu-item__name">Hibiscus Cooler</h3>
+                <span class="menu-item__leader" aria-hidden="true"></span>
+              </div>
+              <p class="menu-item__price">$7</p>
+              <p class="menu-item__desc">Alcohol-free. Hibiscus, lime, ginger and a long pour of soda.</p>
+              <div class="menu-item__meta">
+                <span class="tag tag--veg">Vegan</span>
+                <span class="tag tag--gf">GF</span>
+                <button class="btn btn--ghost btn--sm menu-item__add" type="button" data-add data-name="Hibiscus Cooler" data-price="7">Add</button>
+              </div>
+            </article>
+          </div>
+
+          <p class="menu-note" id="menu-note">
+            Allergen information is available for every dish &mdash; just ask.
+            A discretionary 10% service charge applies to tables of six or more.
+          </p>
+        </div>
+      </section>
+
+      <!-- ===================== Signature dishes ===================== -->
+      <section class="section" id="signatures" aria-labelledby="sig-title">
+        <div class="container-x">
+          <header class="section-head reveal">
+            <p class="eyebrow">Signatures</p>
+            <h2 class="section-title" id="sig-title">The plates people <em>come back for</em></h2>
+            <p class="lede">
+              Six dishes that have not left the menu since the day we opened &mdash;
+              because the regulars would riot.
+            </p>
+          </header>
+
+          <div class="dish-grid">
+            <article class="dish reveal" style="--reveal-delay: 0ms">
+              <div class="dish__media">
+                <img src="./images/food-4.webp" alt="Street-style steak tacos topped with cheddar and pico de gallo" width="1086" height="724" loading="lazy" decoding="async" />
+                <p class="dish__price">$18</p>
+              </div>
+              <div class="dish__body">
+                <h3 class="dish__title">Street-Style Steak Tacos</h3>
+                <p class="dish__desc">
+                  Two soft corn tortillas loaded with grilled carne asada, melted
+                  cheddar, fresh pico de gallo and a generous drizzle of chipotle crema.
+                </p>
+                <div class="dish__foot">
+                  <div class="dish__tags"><span class="tag tag--spicy">Spicy</span></div>
+                  <button class="btn btn--ghost btn--sm" type="button" data-add data-name="Street-Style Steak Tacos" data-price="18">Add to order</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="dish reveal" style="--reveal-delay: 80ms">
+              <div class="dish__media">
+                <img src="./images/food-2.jpeg" alt="Grilled lamb chops with potato wedges and salad" width="250" height="200" loading="lazy" decoding="async" />
+                <p class="dish__price">$32</p>
+              </div>
+              <div class="dish__body">
+                <h3 class="dish__title">Grilled Lamb Chops</h3>
+                <p class="dish__desc">
+                  Perfectly charred chops with seasoned potato wedges, a fresh garden
+                  salad and a rich red wine reduction for dipping.
+                </p>
+                <div class="dish__foot">
+                  <div class="dish__tags"><span class="tag">Grill</span></div>
+                  <button class="btn btn--ghost btn--sm" type="button" data-add data-name="Grilled Lamb Chops" data-price="32">Add to order</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="dish reveal" style="--reveal-delay: 160ms">
+              <div class="dish__media">
+                <img src="./images/food-3.webp" alt="Filet mignon served with roasted potatoes" width="1086" height="724" loading="lazy" decoding="async" />
+                <p class="dish__price">$38</p>
+              </div>
+              <div class="dish__body">
+                <h3 class="dish__title">Filet Mignon</h3>
+                <p class="dish__desc">
+                  A centre-cut filet seared with a peppercorn crust, served with
+                  golden roasted potatoes tossed in sea salt and herbs.
+                </p>
+                <div class="dish__foot">
+                  <div class="dish__tags"><span class="tag tag--gf">GF</span></div>
+                  <button class="btn btn--ghost btn--sm" type="button" data-add data-name="Filet Mignon" data-price="38">Add to order</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="dish reveal" style="--reveal-delay: 0ms">
+              <div class="dish__media">
+                <img src="./images/food.jpeg" alt="Sliced ribeye steak over garlic mashed potatoes" width="250" height="200" loading="lazy" decoding="async" />
+                <p class="dish__price">$34</p>
+              </div>
+              <div class="dish__body">
+                <h3 class="dish__title">Sliced Ribeye</h3>
+                <p class="dish__desc">
+                  Seared and sliced to reveal a medium-rare centre, over creamy
+                  garlic mash with fire-grilled asparagus spears.
+                </p>
+                <div class="dish__foot">
+                  <div class="dish__tags"><span class="tag tag--chef">Chef&rsquo;s pick</span></div>
+                  <button class="btn btn--ghost btn--sm" type="button" data-add data-name="Sliced Ribeye" data-price="34">Add to order</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="dish reveal" style="--reveal-delay: 80ms">
+              <div class="dish__media">
+                <img src="./images/food-5.webp" alt="Garlic butter shrimp in a lemon cream sauce" width="1086" height="724" loading="lazy" decoding="async" />
+                <p class="dish__price">$14</p>
+              </div>
+              <div class="dish__body">
+                <h3 class="dish__title">Garlic Butter Shrimp</h3>
+                <p class="dish__desc">
+                  Jumbo shrimp seared to the second in a creamy garlic and lemon
+                  butter sauce. Bread for mopping is non-negotiable.
+                </p>
+                <div class="dish__foot">
+                  <div class="dish__tags"><span class="tag tag--gf">GF</span></div>
+                  <button class="btn btn--ghost btn--sm" type="button" data-add data-name="Garlic Butter Shrimp" data-price="14">Add to order</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="dish reveal" style="--reveal-delay: 160ms">
+              <div class="dish__media">
+                <img src="./images/food-1.jpeg" alt="Herb-roasted chicken with a fresh endive salad" width="250" height="200" loading="lazy" decoding="async" />
+                <p class="dish__price">$22</p>
+              </div>
+              <div class="dish__body">
+                <h3 class="dish__title">Herb-Roasted Chicken</h3>
+                <p class="dish__desc">
+                  A crisp-skinned leg quarter alongside a bright endive and parsley
+                  salad &mdash; light, Mediterranean, and quietly addictive.
+                </p>
+                <div class="dish__foot">
+                  <div class="dish__tags"><span class="tag tag--gf">GF</span></div>
+                  <button class="btn btn--ghost btn--sm" type="button" data-add data-name="Herb-Roasted Chicken" data-price="22">Add to order</button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== Story ===================== -->
+      <section class="section section--tint" id="story" aria-labelledby="story-title">
+        <div class="container-x">
+          <div class="story">
+            <div class="story__media reveal">
+              <img src="./images/mr.tasty.jpeg" alt="Chef Leo Mubiru plating a dish in the Mr. Tasty kitchen" width="1024" height="559" loading="lazy" decoding="async" />
+            </div>
+
+            <div class="reveal" style="--reveal-delay: 120ms">
+              <p class="eyebrow eyebrow--start">Our Story</p>
+              <h2 class="story__title" id="story-title">A taste of home, <em>crafted since 2015</em></h2>
+              <p class="story__body">
+                <strong>Mr. Tasty</strong> was born from a simple belief: the best
+                meals are the ones that make you feel at home. We opened with eight
+                tables, one grill and a short menu we were stubborn about.
+              </p>
+              <p class="story__body">
+                A decade on, we are a neighbourhood staple for anyone after honest,
+                flavour-packed comfort food in the heart of the city. Our kitchen is
+                led by <strong>Chef Leo Mubiru</strong>, who spent years mastering the
+                art of the perfect bite &mdash; one delicious plate at a time.
+              </p>
+              <p class="signature">
+                Leo Mubiru
+                <small>Head Chef &amp; Co-founder</small>
+              </p>
+
+              <div class="stats">
+                <div class="stat">
+                  <p class="stat__num" data-count-to="10">0</p>
+                  <p class="stat__label">Years on the block</p>
+                </div>
+                <div class="stat">
+                  <p class="stat__num" data-count-to="42" data-suffix="+">0</p>
+                  <p class="stat__label">Dishes on rotation</p>
+                </div>
+                <div class="stat">
+                  <p class="stat__num" data-count-to="120" data-suffix="k">0</p>
+                  <p class="stat__label">Guests served</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== Testimonials ===================== -->
+      <section class="section" aria-labelledby="quotes-title">
+        <div class="container-x">
+          <header class="section-head reveal">
+            <p class="eyebrow">Word of mouth</p>
+            <h2 class="section-title" id="quotes-title">What the regulars <em>say</em></h2>
+          </header>
+
+          <div class="quotes reveal" id="quotes" aria-roledescription="carousel" aria-label="Guest reviews">
+            <figure class="quote is-active">
+              <p class="quote__stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+              <blockquote class="quote__text">
+                &ldquo;The ribeye is the best in the district and it is not close.
+                We came for a birthday two years ago and have been back every month since.&rdquo;
+              </blockquote>
+              <figcaption class="quote__author"><b>Amara Nsubuga</b> &middot; Regular since 2023</figcaption>
+            </figure>
+
+            <figure class="quote">
+              <p class="quote__stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+              <blockquote class="quote__text">
+                &ldquo;Booked a table for twelve at short notice and they did not blink.
+                Every plate landed at the same moment. That is a kitchen that knows what it is doing.&rdquo;
+              </blockquote>
+              <figcaption class="quote__author"><b>Daniel Okot</b> &middot; Private party host</figcaption>
+            </figure>
+
+            <figure class="quote">
+              <p class="quote__stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+              <blockquote class="quote__text">
+                &ldquo;I eat plant-based and normally get an afterthought. Here I got the
+                mushroom risotto and spent the whole meal trying to work out what was in it.&rdquo;
+              </blockquote>
+              <figcaption class="quote__author"><b>Priya Raman</b> &middot; Food writer</figcaption>
+            </figure>
+          </div>
+
+          <div class="quotes__dots" id="quotes-dots" role="tablist" aria-label="Choose a review"></div>
+        </div>
+      </section>
+
+      <!-- ===================== Gallery ===================== -->
+      <section class="section section--tint" id="gallery" aria-labelledby="gallery-title">
+        <div class="container-x">
+          <header class="section-head reveal">
+            <p class="eyebrow">The Room</p>
+            <h2 class="section-title" id="gallery-title">A look around <em>before you arrive</em></h2>
+            <p class="lede">Low light, open fire, and a room built for lingering.</p>
+          </header>
+
+          <div class="gallery reveal" id="gallery-grid">
+            <button class="gallery__item gallery__item--wide gallery__item--tall" type="button" data-caption="The dining room at golden hour">
+              <img src="./images/Restaurant.jpeg" alt="The warmly lit Mr. Tasty dining room" width="1920" height="1080" loading="lazy" decoding="async" />
+            </button>
+            <button class="gallery__item" type="button" data-caption="Starters, plated">
+              <img src="./images/starter.jpeg" alt="A plated starter" width="1024" height="1024" loading="lazy" decoding="async" />
+            </button>
+            <button class="gallery__item" type="button" data-caption="From the pass">
+              <img src="./images/dish.jpeg" alt="A finished dish leaving the pass" width="1024" height="1024" loading="lazy" decoding="async" />
+            </button>
+            <button class="gallery__item gallery__item--wide" type="button" data-caption="Chef Leo at work">
+              <img src="./images/mr.tasty.jpeg" alt="Chef Leo Mubiru at work" width="1024" height="559" loading="lazy" decoding="async" />
+            </button>
+            <button class="gallery__item" type="button" data-caption="Small plates">
+              <img src="./images/dish-2.jpeg" alt="A small plate ready to serve" width="1024" height="1024" loading="lazy" decoding="async" />
+            </button>
+            <button class="gallery__item" type="button" data-caption="Filet mignon, peppercorn crust">
+              <img src="./images/food-3.webp" alt="Filet mignon with roasted potatoes" width="1086" height="724" loading="lazy" decoding="async" />
+            </button>
+            <button class="gallery__item gallery__item--wide" type="button" data-caption="Garlic butter shrimp">
+              <img src="./images/food-5.webp" alt="Garlic butter shrimp in a pan" width="1086" height="724" loading="lazy" decoding="async" />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== Reservation ===================== -->
+      <section class="section" id="reserve" aria-labelledby="reserve-title">
+        <div class="container-x">
+          <header class="section-head reveal">
+            <p class="eyebrow">Reservations</p>
+            <h2 class="section-title" id="reserve-title">Book a table in <em>under a minute</em></h2>
+            <p class="lede">
+              We hold a handful of walk-in seats at the bar every night, but the
+              dining room fills fast on Fridays and Saturdays.
+            </p>
+          </header>
+
+          <div class="reserve reveal">
+            <aside class="reserve__aside">
+              <h3>Good to know</h3>
+              <ul class="info-list">
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" stroke-linecap="round" /></svg>
+                  <span>Tables are held for 15 minutes past the booking time.</span>
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" stroke-linecap="round" /><circle cx="9.5" cy="7" r="4" /><path d="M19 8v6M22 11h-6" stroke-linecap="round" /></svg>
+                  <span>Parties of 8 or more? Call us and we will build the menu with you.</span>
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z" stroke-linejoin="round" /></svg>
+                  <span><a href="tel:+15550123344">+1 (555) 012-3344</a> &mdash; daily, 10am to close.</span>
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M21 10.5c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0Z" stroke-linejoin="round" /><circle cx="12" cy="10.5" r="3" /></svg>
+                  <span>24 Kingfisher Lane, Riverside District.</span>
+                </li>
+              </ul>
+            </aside>
+
+            <div class="reserve__form">
+              <form class="reservation-form" id="reservation-form" novalidate>
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="res-name">Full name <span class="req">*</span></label>
+                    <input class="input" id="res-name" name="name" type="text" autocomplete="name" placeholder="Jane Doe" required />
+                    <p class="error" id="err-name" aria-live="polite"></p>
+                  </div>
+
+                  <div class="field">
+                    <label for="res-email">Email address <span class="req">*</span></label>
+                    <input class="input" id="res-email" name="email" type="email" autocomplete="email" placeholder="jane@example.com" required />
+                    <p class="error" id="err-email" aria-live="polite"></p>
+                  </div>
+
+                  <div class="field">
+                    <label for="res-phone">Phone</label>
+                    <input class="input" id="res-phone" name="phone" type="tel" autocomplete="tel" placeholder="+1 555 000 0000" />
+                    <p class="error" id="err-phone" aria-live="polite"></p>
+                  </div>
+
+                  <div class="field">
+                    <label for="res-guests">Guests <span class="req">*</span></label>
+                    <input class="input" id="res-guests" name="guests" type="number" min="1" max="12" step="1" value="2" required />
+                    <p class="error" id="err-guests" aria-live="polite"></p>
+                  </div>
+
+                  <div class="field">
+                    <label for="res-date">Date <span class="req">*</span></label>
+                    <input class="input" id="res-date" name="date" type="date" required />
+                    <p class="error" id="err-date" aria-live="polite"></p>
+                  </div>
+
+                  <div class="field">
+                    <label for="res-time">Time <span class="req">*</span></label>
+                    <select class="input" id="res-time" name="time" required>
+                      <option value="">Select a sitting</option>
+                      <option value="12:00">12:00 &mdash; Lunch</option>
+                      <option value="13:30">13:30 &mdash; Lunch</option>
+                      <option value="18:00">18:00 &mdash; Early dinner</option>
+                      <option value="19:00">19:00 &mdash; Dinner</option>
+                      <option value="20:00">20:00 &mdash; Dinner</option>
+                      <option value="21:00">21:00 &mdash; Late</option>
+                    </select>
+                    <p class="error" id="err-time" aria-live="polite"></p>
+                  </div>
+
+                  <div class="field field--full">
+                    <label for="res-occasion">Occasion</label>
+                    <select class="input" id="res-occasion" name="occasion">
+                      <option value="">Just dinner</option>
+                      <option>Birthday</option>
+                      <option>Anniversary</option>
+                      <option>Business</option>
+                      <option>Celebration</option>
+                    </select>
+                  </div>
+
+                  <div class="field field--full">
+                    <label for="res-requests">Special requests</label>
+                    <textarea class="input" id="res-requests" name="requests" rows="3" maxlength="400" placeholder="Allergies, accessibility needs, a quiet corner..."></textarea>
+                  </div>
+
+                  <div class="field field--full">
+                    <label class="form-consent" for="res-consent">
+                      <input id="res-consent" name="consent" type="checkbox" required />
+                      <span>I understand the table is held for 15 minutes and agree to be contacted about this booking. <span class="req">*</span></span>
+                    </label>
+                    <p class="error" id="err-consent" aria-live="polite"></p>
+                  </div>
+
+                  <div class="field field--full">
+                    <button class="btn btn--primary btn--block" type="submit">Confirm reservation</button>
+                  </div>
+                </div>
+              </form>
+
+              <div class="reserve__done" id="reserve-done" role="status" aria-live="polite">
+                <div class="check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12.5 4.5 4.5L19 7.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                </div>
+                <h3>Your table is booked</h3>
+                <p>We have sent the details to your inbox. See you soon!</p>
+                <dl class="booking-summary" id="booking-summary"></dl>
+                <p style="margin-top: 1.5rem">
+                  <button class="btn btn--ghost btn--sm" type="button" id="reserve-again">Make another booking</button>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== Visit ===================== -->
+      <section class="section section--tint" id="visit" aria-labelledby="visit-title">
+        <div class="container-x">
+          <header class="section-head reveal">
+            <p class="eyebrow">Visit us</p>
+            <h2 class="section-title" id="visit-title">Find us on <em>Kingfisher Lane</em></h2>
+          </header>
+
+          <div class="visit">
+            <div class="panel reveal">
+              <h3>Opening hours</h3>
+              <ul class="hours" id="hours-list">
+                <li data-day="1"><span>Monday</span><span>11:00 &ndash; 22:00</span></li>
+                <li data-day="2"><span>Tuesday</span><span>11:00 &ndash; 22:00</span></li>
+                <li data-day="3"><span>Wednesday</span><span>11:00 &ndash; 22:00</span></li>
+                <li data-day="4"><span>Thursday</span><span>11:00 &ndash; 22:00</span></li>
+                <li data-day="5"><span>Friday</span><span>11:00 &ndash; 23:30</span></li>
+                <li data-day="6"><span>Saturday</span><span>11:00 &ndash; 23:30</span></li>
+                <li data-day="0"><span>Sunday</span><span>12:00 &ndash; 21:00</span></li>
+              </ul>
+              <p class="status" id="open-status"><span class="dot"></span><span>Checking hours&hellip;</span></p>
+            </div>
+
+            <div class="panel reveal" style="--reveal-delay: 100ms">
+              <h3>Get in touch</h3>
+              <ul class="info-list">
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M21 10.5c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0Z" stroke-linejoin="round" /><circle cx="12" cy="10.5" r="3" /></svg>
+                  <span>24 Kingfisher Lane<br />Riverside District, 00100</span>
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z" stroke-linejoin="round" /></svg>
+                  <a href="tel:+15550123344">+1 (555) 012-3344</a>
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5" /><path d="m3 7 9 6 9-6" stroke-linecap="round" /></svg>
+                  <a href="mailto:hello@mrtasty.example.com">hello@mrtasty.example.com</a>
+                </li>
+              </ul>
+              <p style="margin-top: 1.5rem">
+                <a class="btn btn--ghost btn--sm" href="https://www.google.com/maps/search/?api=1&amp;query=24+Kingfisher+Lane" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+              </p>
+            </div>
+
+            <div class="panel reveal" style="--reveal-delay: 200ms">
+              <h3>Private hire &amp; events</h3>
+              <p style="font-size: 0.9rem">
+                The mezzanine seats 30 for a seated dinner or 50 standing. We build
+                the menu around you, and the bar stays open as long as you do.
+              </p>
+              <ul class="info-list" style="margin-top: 1.25rem">
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 20V9l7-5 7 5v11" stroke-linejoin="round" /><path d="M9.5 20v-6h5v6" stroke-linejoin="round" /></svg>
+                  <span>Mezzanine &middot; 30 seated / 50 standing</span>
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2.5" /><path d="M8 3v4M16 3v4M3 10h18" stroke-linecap="round" /></svg>
+                  <span>Book at least two weeks ahead</span>
+                </li>
+              </ul>
+              <p style="margin-top: 1.5rem">
+                <a class="btn btn--ghost btn--sm" href="mailto:events@mrtasty.example.com">Enquire about events</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===================== Footer ===================== -->
+    <footer class="site-footer" id="contact">
+      <div class="container-x">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a class="brand" href="#top" aria-label="Mr. Tasty — home">
+              <svg class="brand__mark" viewBox="0 0 48 48" aria-hidden="true">
+                <circle cx="24" cy="24" r="22.5" fill="none" stroke="#d9a441" stroke-width="1.25" />
+                <path d="M17 13v9.5a3.5 3.5 0 0 0 7 0V13M31 13c-2.2 1.6-3.2 4-3.2 7 0 2.2.8 3.6 2.2 4.2V35M17 24.5V35" fill="none" stroke="#d9a441" stroke-width="1.6" stroke-linecap="round" />
+              </svg>
+              <span class="brand__name">Mr.<span>Tasty</span></span>
+            </a>
+            <p>Honest, flavour-packed comfort food in the heart of Riverside District. Since 2015.</p>
+
+            <form class="newsletter" id="newsletter-form" novalidate>
+              <label class="sr-only" for="news-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Email address</label>
+              <input class="input" id="news-email" type="email" name="email" placeholder="Your email for specials" required />
+              <button class="btn btn--primary btn--sm" type="submit">Join</button>
+            </form>
+
+            <div class="socials">
+              <a href="https://wa.me/15550123344" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.3.6-1.1.1-.1 0-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3c-.3.3-.9.9-.9 2.1s.9 2.4 1 2.6a9.4 9.4 0 0 0 3.7 3.2c1.4.6 1.9.6 2.6.5.4 0 1.4-.5 1.6-1.1.2-.6.2-1.1.1-1.2l-.6-.2Z" /></svg>
+              </a>
+              <a href="https://instagram.com" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none" /></svg>
+              </a>
+              <a href="https://x.com" aria-label="X" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 3h3l-6.6 7.5L21.8 21h-6l-4.7-6.1L5.7 21h-3l7-8-6.6-10h6.1l4.3 5.6L17.5 3Zm-1 16h1.7L7.6 4.8H5.8L16.5 19Z" /></svg>
+              </a>
+              <a href="https://facebook.com" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 9V7.2c0-.8.2-1.2 1.4-1.2H17V3h-2.6C11.6 3 10.7 4.5 10.7 7v2H8.7v3h2v9H14v-9h2.6l.4-3H14Z" /></svg>
+              </a>
+            </div>
+          </div>
+
+          <nav class="footer-col" aria-label="Explore">
+            <h3>Explore</h3>
+            <ul>
+              <li><a href="#menu">Menu</a></li>
+              <li><a href="#signatures">Signature dishes</a></li>
+              <li><a href="#story">Our story</a></li>
+              <li><a href="#gallery">Gallery</a></li>
+              <li><a href="#reserve">Reservations</a></li>
+            </ul>
+          </nav>
+
+          <nav class="footer-col" aria-label="Services">
+            <h3>Services</h3>
+            <ul>
+              <li><a href="#menu">Dine in</a></li>
+              <li><a href="#menu">Collection</a></li>
+              <li><a href="#visit">Private parties</a></li>
+              <li><a href="#visit">Event catering</a></li>
+              <li><a href="#visit">Parking</a></li>
+            </ul>
+          </nav>
+
+          <nav class="footer-col" aria-label="Legal">
+            <h3>Legal</h3>
+            <ul>
+              <li><a href="#top">Terms of use</a></li>
+              <li><a href="#top">Privacy policy</a></li>
+              <li><a href="#top">Cookie policy</a></li>
+              <li><a href="#top">Accessibility</a></li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="footer-bar">
+          <p>&copy; <span id="year">2026</span> Mr. Tasty. All rights reserved.</p>
+          <nav aria-label="Footer utilities">
+            <a href="#top">Back to top</a>
+            <a href="#reserve">Book a table</a>
+            <a href="tel:+15550123344">+1 (555) 012-3344</a>
+          </nav>
         </div>
       </div>
+    </footer>
 
-      <h1 id="menu"><u style="color: #967b5d">The Menu</u></h1>
+    <!-- ===================== Order drawer ===================== -->
+    <div class="drawer-backdrop" id="drawer-backdrop" hidden></div>
 
-      <section id="card">
-        <br />
-        <div class="card shadow-sm">
-          <figure>
-            <img src="./images/starter.jpeg" width="450" alt="dish image" />
-          </figure>
-          <div class="card-body">
-            <h2 class="card-title">Starters</h2>
-            <p></p>
-            <div class="card-actions justify-end">
-              <button class="btn btn-primary">Order</button>
-            </div>
-          </div>
-        </div>
-        <div class="card shadow-sm">
-          <figure>
-            <img src="./images/dish.jpeg" width="450" alt="Dish" />
-          </figure>
-          <div class="card-body">
-            <h2 class="card-title">Mains</h2>
-            <p></p>
-            <div class="card-actions justify-end">
-              <button class="btn btn-primary">Order</button>
-            </div>
-          </div>
-        </div>
+    <aside class="drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title" hidden>
+      <header class="drawer__head">
+        <h2 id="cart-title">Your order</h2>
+        <button class="icon-btn" id="cart-close" type="button" aria-label="Close your order">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke-linecap="round" /></svg>
+        </button>
+      </header>
 
-        <div class="card shadow-sm">
-          <figure>
-            <img src="./images/dish 2.jpeg" width="450" alt="Dish" />
-          </figure>
-          <div class="card-body">
-            <h2 class="card-title">Desserts</h2>
-            <p></p>
-            <div class="card-actions justify-end">
-              <button class="btn btn-primary">Order</button>
-            </div>
-          </div>
+      <div class="drawer__body" id="cart-body">
+        <div class="cart-empty" id="cart-empty">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+            <path d="M4 7h16l-1.3 11.1a2 2 0 0 1-2 1.9H7.3a2 2 0 0 1-2-1.9L4 7Z" stroke-linejoin="round" />
+            <path d="M9 10V6.5a3 3 0 0 1 6 0V10" stroke-linecap="round" />
+          </svg>
+          <p>Nothing here yet.</p>
+          <p style="font-size: 0.85rem">Add a dish from the menu and it will show up right here.</p>
         </div>
-      </section>
-      <h1><u style="color: #967b5d">Top Dishes</u></h1>
-      <section id="Top-dishes">
-        <div class="card bg-base-100 w-96 shadow-sm">
-          <figure>
-            <img src="./images/food 4.webp" alt="Shoes" />
-          </figure>
-          <div class="card-body">
-            <h2 class="card-title">Card Title</h2>
-            <p></p>
-            <div class="card-actions justify-end">
-              <button class="btn btn-primary">Buy Now</button>
-            </div>
-          </div>
-        </div>
-        <div class="card bg-base-100 w-96 shadow-sm">
-          <figure>
-            <img src="./images/food 2.jpeg" alt="Shoes" />
-          </figure>
-          <div class="card-body">
-            <h2 class="card-title">Card Title</h2>
-            <p></p>
-            <div class="card-actions justify-end">
-              <button class="btn btn-primary">Buy Now</button>
-            </div>
-          </div>
-        </div>
-        <div class="card bg-base-100 w-96 shadow-sm">
-          <figure>
-            <img src="./images/food 3.webp" alt="Shoes" />
-          </figure>
-          <div class="card-body">
-            <h2 class="card-title">Card Title</h2>
-            <p></p>
-            <div class="card-actions justify-end">
-              <button class="btn btn-primary">Buy Now</button>
-            </div>
-          </div>
-        </div>
-        <div class="card bg-base-100 w-96 shadow-sm">
-          <figure>
-            <img src="./images/food.jpeg" alt="Shoes" />
-          </figure>
-          <div class="card-body">
-            <h2 class="card-title">Card Title</h2>
-            <p></p>
-            <div class="card-actions justify-end">
-              <button class="btn btn-primary">Buy Now</button>
-            </div>
-          </div>
-        </div>
-        <div class="card bg-base-100 w-96 shadow-sm">
-          <figure>
-            <img src="./images/food 5.webp" alt="Shoes" />
-          </figure>
-          <div class="card-body">
-            <h2 class="card-title">Card Title</h2>
-            <p></p>
-            <div class="card-actions justify-end">
-              <button class="btn btn-primary">Buy Now</button>
-            </div>
-          </div>
-        </div>
-        <div class="card bg-base-100 w-96 shadow-sm">
-          <figure>
-            <img src="./images/food 1.jpeg" alt="Shoes" />
-          </figure>
-          <div class="card-body">
-            <h2 class="card-title">Card Title</h2>
-            <p></p>
-            <div class="card-actions justify-end">
-              <button class="btn btn-primary">Buy Now</button>
-            </div>
-          </div>
-        </div>
-      </section>
+        <div id="cart-lines"></div>
+      </div>
 
-      <footer
-        class="footer sm:footer-horizontal bg-neutral text-neutral-content p-10"
-      >
-        <nav id="contact">
-          <h6 class="footer-title">Services</h6>
-          <a class="link link-hover">Branding</a>
-          <a class="link link-hover">Design</a>
-          <a class="link link-hover">Marketing</a>
-          <a class="link link-hover">Advertisement</a>
-        </nav>
-        <nav>
-          <h6 class="footer-title">Company</h6>
-          <a class="link link-hover">About us</a>
-          <a class="link link-hover">Contact</a>
-          <a class="link link-hover">Jobs</a>
-          <a class="link link-hover">Press kit</a>
-        </nav>
-        <nav>
-          <h6 class="footer-title">Legal</h6>
-          <a class="link link-hover">Terms of use</a>
-          <a class="link link-hover">Privacy policy</a>
-          <a class="link link-hover">Cookie policy</a>
-        </nav>
+      <footer class="drawer__foot">
+        <div class="totals">
+          <div><span>Subtotal</span><span id="cart-subtotal">$0.00</span></div>
+          <div><span>Service (10%)</span><span id="cart-service">$0.00</span></div>
+          <div class="grand"><span>Total</span><span id="cart-total">$0.00</span></div>
+        </div>
+        <button class="btn btn--primary btn--block" id="cart-checkout" type="button" disabled>Send order to the pass</button>
+        <p style="margin-top: 0.75rem; text-align: center; font-size: 0.75rem; color: var(--color-faint)">
+          Collection only &middot; ready in about 25 minutes
+        </p>
       </footer>
-    </main>
+    </aside>
+
+    <!-- ===================== Lightbox ===================== -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+      <button class="icon-btn lightbox__close" id="lightbox-close" type="button" aria-label="Close photo viewer">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke-linecap="round" /></svg>
+      </button>
+      <button class="icon-btn lightbox__nav lightbox__nav--prev" id="lightbox-prev" type="button" aria-label="Previous photo">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 5 8 12l7 7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </button>
+      <button class="icon-btn lightbox__nav lightbox__nav--next" id="lightbox-next" type="button" aria-label="Next photo">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m9 5 7 7-7 7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </button>
+      <figure class="lightbox__figure">
+        <img id="lightbox-img" src="" alt="" />
+        <figcaption id="lightbox-caption"></figcaption>
+      </figure>
+    </div>
+
+    <!-- ===================== Utilities ===================== -->
+    <button class="icon-btn to-top" id="to-top" type="button" aria-label="Back to top">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+    </button>
+
+    <div class="toaster" id="toaster" role="status" aria-live="polite"></div>
+
+    <script
+      src="./js/main.js"
+      defer
+      onerror="document.documentElement.classList.remove('js')"
+    ></script>
   </body>
 </html>
