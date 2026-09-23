@@ -59,6 +59,7 @@
         "@type": "Restaurant",
         "name": "Mr. Tasty",
         "description": "Neighbourhood grill serving honest, flavour-packed comfort food since 2015.",
+        "disambiguatingDescription": "Fictional restaurant used as a front-end portfolio demo. The address, telephone number, opening hours and prices below are invented and do not describe a real business.",
         "image": "./images/Restaurant.jpeg",
         "servesCuisine": ["Grill", "Comfort food", "Contemporary"],
         "priceRange": "$$",
@@ -118,6 +119,7 @@
               />
             </svg>
             <span class="brand__name">Mr.<span>Tasty</span></span>
+            <span class="brand__tag">Demo</span>
           </a>
 
           <ul class="nav__links" id="nav-links">
@@ -697,6 +699,10 @@
           <header class="section-head reveal">
             <p class="eyebrow">Word of mouth</p>
             <h2 class="section-title" id="quotes-title">What the regulars <em>say</em></h2>
+            <p class="lede">
+              Sample reviews written to illustrate the layout &mdash; not real
+              customer feedback.
+            </p>
           </header>
 
           <div class="quotes reveal" id="quotes" aria-roledescription="carousel" aria-label="Guest reviews">
@@ -1033,8 +1039,22 @@
           </nav>
         </div>
 
+        <aside class="disclosure">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" />
+            <path d="M12 11v5.5M12 7.5v.1" stroke-linecap="round" />
+          </svg>
+          <p>
+            <strong>This is a demo.</strong> Mr. Tasty is a fictional restaurant
+            built as a front-end portfolio project. The address, phone number,
+            opening hours, prices, ratings and reviews are all invented, and the
+            booking, ordering and newsletter forms validate what you type but do
+            not send it anywhere.
+          </p>
+        </aside>
+
         <div class="footer-bar">
-          <p>&copy; <span id="year">2026</span> Mr. Tasty. All rights reserved.</p>
+          <p>&copy; <span id="year">2026</span> Mr. Tasty &mdash; demo project.</p>
           <nav aria-label="Footer utilities">
             <a href="#top">Back to top</a>
             <a href="#reserve">Book a table</a>

@@ -113,18 +113,27 @@ number, price range and opening hours.
 `@media print` strips the chrome — header, hero, gallery, drawers — and prints
 the full menu on white, including any course currently filtered out.
 
-## Placeholder content
+## This is a demo site
 
-The following are **samples, not real details**, and must be replaced before
-the site goes live:
+Mr. Tasty is a fictional restaurant built as a front-end portfolio piece. Every
+business detail is invented, and the site says so in three places:
 
-- Address (24 Kingfisher Lane), phone `+1 (555) 012-3344`, and the
-  `@mrtasty.example.com` email addresses, in both the markup and the JSON-LD.
-- `https://mrtasty.example.com/` in the canonical and `og:url` tags.
-- Dish prices, the "4.9 from 820 regulars" rating, the three testimonials and
-  the stat counters (10 years / 42+ dishes / 120k guests).
-- Social links, which currently point at each network's home page.
+- a **Demo** chip beside the wordmark in the header,
+- a disclosure panel in the footer, stating that the address, phone, hours,
+  prices, ratings and reviews are invented and that the forms send nothing,
+- `disambiguatingDescription` in the JSON-LD, so the structured data does not
+  assert a real business to search engines.
 
-The reservation form, newsletter signup and order checkout are front-end only:
-they validate and confirm, but nothing is sent anywhere. Point them at a real
-endpoint (or a service such as Formspree) before launch.
+The testimonials section is additionally labelled as sample content.
+
+Invented values, should you ever point this at a real venue: the address
+(24 Kingfisher Lane), the phone number (`+1 (555) 012-3344` — the 555 range is
+reserved for fiction), the `@mrtasty.example.com` addresses and
+`mrtasty.example.com` canonical URL (`example.com` is reserved by RFC 2606),
+all dish prices, the 4.9/820 hero rating, the three testimonials, and the stat
+counters. Hours live in two places that must stay in sync: `HOURS` in
+`js/main.js` and `openingHoursSpecification` in `index.html`.
+
+The reservation, ordering and newsletter forms are deliberately front-end only:
+they validate and confirm, but post nothing. If you wire them to a real endpoint,
+remove the corresponding sentence from the footer disclosure.

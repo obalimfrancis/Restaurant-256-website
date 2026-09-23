@@ -416,6 +416,22 @@
   }
   .brand__name span { color: var(--color-gold); }
 
+  /* Marks the site as a portfolio demo without disturbing the lockup */
+  .brand__tag {
+    align-self: center;
+    padding: 0.15rem 0.45rem;
+    border: 1px solid rgba(217, 164, 65, 0.45);
+    border-radius: 5px;
+    background: rgba(217, 164, 65, 0.1);
+    color: var(--color-gold);
+    font-family: var(--font-body);
+    font-size: 0.5625rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    line-height: 1.5;
+  }
+
   .nav__links {
     display: flex;
     align-items: center;
@@ -1701,6 +1717,30 @@
   }
   .socials svg { width: 17px; height: 17px; }
 
+  .disclosure {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    margin-bottom: 2rem;
+    padding: 1.1rem 1.25rem;
+    border: 1px solid rgba(217, 164, 65, 0.28);
+    border-radius: 10px;
+    background: rgba(217, 164, 65, 0.06);
+  }
+  .disclosure svg {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    color: var(--color-gold);
+  }
+  .disclosure p {
+    font-size: 0.85rem;
+    line-height: 1.65;
+    color: var(--color-muted);
+  }
+  .disclosure strong { color: var(--color-cream); font-weight: 600; }
+
   .footer-bar {
     display: flex;
     flex-wrap: wrap;
@@ -1864,4 +1904,16 @@
   h1, h2, h3 { color: #111; }
   .menu-item__name, .menu-item__price { color: #111; }
   .menu-item.is-hidden { display: grid !important; }
+  /* The demo notice must survive into print */
+  .site-footer, .disclosure { display: block !important; }
+  .site-footer {
+    background: none !important;
+    border: 0;
+    padding-top: 0;
+  }
+  .disclosure,
+  .disclosure p,
+  .disclosure strong { color: #111 !important; }
+  .disclosure { border-color: #999; background: none; }
+  .footer-grid, .footer-bar { display: none !important; }
 }
